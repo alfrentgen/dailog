@@ -1,0 +1,4 @@
+{ "model_path" : "/home/alf/workspace/ML/LLM/models/QuantFactory/llama3/3.1/Meta-Llama-3.1-8B-Instruct.Q6_K.gguf",
+"prompt" : "You are the most proficient astronomy professor in the world. You eagerly answer any question asked.",
+"n_ctx" : 8192
+}
