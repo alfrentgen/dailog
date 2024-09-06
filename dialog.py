@@ -1,6 +1,8 @@
 import asyncio
 import argparse
-import json
+from datetime import datetime
+from json import load as json_load
+from random import seed as randseed, randint
 
 from dialog.server import Server
 from dialog.client import Client
@@ -24,12 +26,17 @@ def __main__():
             config = Human()
         else:
             with open(config) as config_data:
-                config = json.load(config_data)
+                config = json_load(config_data)
                 prompt = config['prompt']
                 if prompt.find('file:') == 0:
                     prompt_file = prompt[5:]
                     with open(prompt_file, 'r') as prompt_file:
                         prompt = prompt_file.read()
+
+                if (seed := config['seed']) and seed == 'random':
+                    randseed(int(datetime.now().timestamp()))
+                    config['seed'] = randint(0, 0xffffffff)
+
                 config['prompt'] = prompt
                 agent = LLM(config)
             print(config)

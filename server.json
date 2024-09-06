@@ -1,3 +1,3 @@
 { "model_path" : "/home/alf/workspace/ML/LLM/models/QuantFactory/llama3/3.1/Meta-Llama-3.1-8B-Instruct.Q6_K.gguf",
-"prompt" : "file:server_prompt.txt", "n_ctx" : 8192, "n_threads" : 16, "n_gpu_layers" : 12
+"prompt" : "file:prompts/Tinamyde/person_b.txt", "n_ctx" : 8192, "n_threads" : 16, "n_gpu_layers" : 12, "seed" : "random"
 }
