@@ -25,9 +25,16 @@ def __main__():
         else:
             with open(config) as config_data:
                 config = json.load(config_data)
-                response = LLM(config)
+                prompt = config['prompt']
+                if prompt.find('file:') == 0:
+                    prompt_file = prompt[5:]
+                    with open(prompt_file, 'r') as prompt_file:
+                        prompt = prompt_file.read()
+                config['prompt'] = prompt
+                agent = LLM(config)
+            print(config)
 
-    instance = Server(address, port, response) if mode == 'server' else Client(address, port, response)
+    instance = Server(address, port, agent) if mode == 'server' else Client(address, port, agent)
     asyncio.run(instance.run())
 
 __main__()
