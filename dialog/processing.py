@@ -37,4 +37,7 @@ class LLM(Model):
         response = self.model.create_chat_completion(
             messages=self.messages_history,
         )
+        message = response['choices'][0]['message']['content']
+        role = response['choices'][0]['message']['role']
+        self.messages_history.append({'role': role, 'message': message})
         return self.get_message_from_response(response)
