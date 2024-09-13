@@ -8,7 +8,8 @@ class Model:
 
 class Human(Model):
     def process(self, message: str) -> str:
-        response = input('Human response: ')
+        print(f'Received:\n{message}\n')
+        response = input()
         return response
 
 class LLM(Model):
@@ -35,7 +36,9 @@ class LLM(Model):
     def process(self, message: str) -> str:
         self.add_user_message(message)
         response = self.model.create_chat_completion(
+            temperature=0.8,
             messages=self.messages_history,
+            repeat_penalty=1.18
         )
         message = response['choices'][0]['message']['content']
         role = response['choices'][0]['message']['role']

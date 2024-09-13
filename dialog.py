@@ -23,7 +23,7 @@ def __main__():
     config = args.config
     if config:
         if config == 'human':
-            config = Human()
+            agent = Human()
         else:
             with open(config) as config_data:
                 config = json_load(config_data)
